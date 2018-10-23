@@ -14,6 +14,23 @@ class App extends React.Component {
       }
     }
   }
+  
+  onChangeType = (val => {
+    this.setState({
+      filters: {...this.state.filters, 
+        type: val }
+    })
+  }
+  
+  onFindPetsClick = () => {
+    let animal = this.state.filters.type
+    if (animal == 'all'){
+      fetch('/api/pets')
+    }
+    else {
+      fetch(`/api/pets?type=${animal}`)
+    }
+  }
 
   render() {
     return (
